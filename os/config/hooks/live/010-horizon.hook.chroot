@@ -1,10 +1,18 @@
 #!/bin/sh
 set -e
-chmod +x /usr/local/bin/horizon-session /usr/local/lib/horizon/api.py
+chmod +x /usr/local/bin/horizon-session /usr/local/lib/horizon/api.py /usr/local/lib/horizon/app_guard.py
 id horizon >/dev/null 2>&1 || useradd -m -s /bin/bash horizon
-usermod -aG audio,video horizon
+usermod -aG audio,video,input,sudo horizon
 systemctl enable horizon-api.service
+systemctl enable horizon-app-guard.service
 systemctl enable lightdm.service
 mkdir -p /var/lib/horizon/games /var/lib/horizon/state
 chown -R horizon:horizon /var/lib/horizon 2>/dev/null || true
 flatpak remote-add --system --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo || true
+if command -v plymouth-set-default-theme >/dev/null 2>&1; then
+  plymouth-set-default-theme horizon
+  update-initramfs -u -k all
+fi
+if command -v update-grub >/dev/null 2>&1; then
+  update-grub || true
+fi

@@ -5,8 +5,12 @@ lb config noauto \
   --distribution trixie \
   --architectures amd64 \
   --binary-images iso-hybrid \
+  --image-name horizon-os \
+  --iso-application "Horizon OS" \
+  --iso-publisher "Horizon Studios" \
+  --iso-volume "HORIZON_OS" \
   --debian-installer live \
   --debian-installer-gui true \
   --security false \
   --archive-areas "main contrib non-free-firmware" \
-  --bootappend-live "boot=live components username=horizon hostname=horizon-os locales=en_GB.UTF-8 keyboard-layouts=gb quiet splash"
+  --bootappend-live "boot=live components username=horizon hostname=horizon-os locales=en_GB.UTF-8 keyboard-layouts=gb quiet splash loglevel=3 vt.global_cursor_default=0"

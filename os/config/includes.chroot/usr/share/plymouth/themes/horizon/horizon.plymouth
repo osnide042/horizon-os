@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Horizon
+Description=Horizon OS animated startup
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/horizon
+ScriptFile=/usr/share/plymouth/themes/horizon/horizon.script

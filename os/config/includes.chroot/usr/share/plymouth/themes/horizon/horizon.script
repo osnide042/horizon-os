@@ -1,0 +1,34 @@
+Window.SetBackgroundTopColor(0.02, 0.05, 0.16);
+Window.SetBackgroundBottomColor(0.18, 0.05, 0.34);
+
+title_image = Image.Text("HORIZON", 1.0, 1.0, 1.0);
+title_sprite = Sprite(title_image);
+title_sprite.SetX(Window.GetWidth() / 2 - title_image.GetWidth() / 2);
+title_sprite.SetY(Window.GetHeight() / 2 - 44);
+title_sprite.SetZ(10);
+
+status_image = Image.Text("Starting your Horizon", 0.54, 0.72, 1.0);
+status_sprite = Sprite(status_image);
+status_sprite.SetX(Window.GetWidth() / 2 - status_image.GetWidth() / 2);
+status_sprite.SetY(Window.GetHeight() / 2 + 32);
+status_sprite.SetZ(10);
+
+dot_image = Image.Text("●", 0.42, 0.30, 1.0);
+dot1 = Sprite(dot_image);
+dot2 = Sprite(dot_image);
+dot3 = Sprite(dot_image);
+dot1.SetX(Window.GetWidth() / 2 - 32);
+dot2.SetX(Window.GetWidth() / 2 - 4);
+dot3.SetX(Window.GetWidth() / 2 + 24);
+dot1.SetY(Window.GetHeight() / 2 + 72);
+dot2.SetY(Window.GetHeight() / 2 + 72);
+dot3.SetY(Window.GetHeight() / 2 + 72);
+
+fun horizon_refresh() {
+  t = Plymouth.GetTime();
+  dot1.SetOpacity((Math.Sin(t * 4.0) + 1.0) / 2.0);
+  dot2.SetOpacity((Math.Sin(t * 4.0 - 2.0) + 1.0) / 2.0);
+  dot3.SetOpacity((Math.Sin(t * 4.0 - 4.0) + 1.0) / 2.0);
+}
+
+Plymouth.SetRefreshFunction(horizon_refresh);

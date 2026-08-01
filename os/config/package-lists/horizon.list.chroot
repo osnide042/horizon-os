@@ -15,7 +15,9 @@ alsa-utils
 python3
 python3-requests
 python3-psutil
+python3-evdev
 flatpak
+steam-devices
 x11-xserver-utils
 unzip
 curl

@@ -1,0 +1,13 @@
+[Unit]
+Description=Horizon OS app exit controller
+After=lightdm.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /usr/local/lib/horizon/app_guard.py
+Restart=always
+RestartSec=2
+User=root
+
+[Install]
+WantedBy=multi-user.target
