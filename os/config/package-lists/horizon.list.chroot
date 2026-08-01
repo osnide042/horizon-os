@@ -19,10 +19,10 @@ systemsettings
 konsole
 kate
 ark
-spectacle
+kde-spectacle
 firefox-esr
 breeze-cursor-theme
-xcursorgen
+x11-apps
 librsvg2-bin
 chromium
 network-manager
