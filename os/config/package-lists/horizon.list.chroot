@@ -22,6 +22,5 @@ sudo
 fonts-noto
 fonts-noto-color-emoji
 firmware-linux-free
-virtualbox-guest-x11
 plymouth
 plymouth-themes
