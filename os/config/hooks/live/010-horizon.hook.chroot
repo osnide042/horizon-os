@@ -1,14 +1,22 @@
 #!/bin/sh
 set -e
-chmod +x /usr/local/bin/horizon-session /usr/local/lib/horizon/api.py /usr/local/lib/horizon/app_guard.py
+chmod +x /usr/local/bin/horizon-session /usr/local/bin/horizon-first-run /usr/local/bin/horizon-steam /usr/local/bin/horizon-store /usr/local/bin/horizon-desktop-init /usr/local/lib/horizon/api.py /usr/local/lib/horizon/app_guard.py
 id horizon >/dev/null 2>&1 || useradd -m -s /bin/bash horizon
 usermod -aG audio,video,input,sudo horizon
 systemctl enable horizon-api.service
 systemctl enable horizon-app-guard.service
-systemctl enable lightdm.service
+systemctl disable lightdm.service 2>/dev/null || true
+systemctl enable sddm.service
 mkdir -p /var/lib/horizon/games /var/lib/horizon/state
 chown -R horizon:horizon /var/lib/horizon 2>/dev/null || true
 flatpak remote-add --system --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo || true
+mkdir -p /usr/share/icons/HorizonPurple/cursors
+rsvg-convert -w 32 -h 32 /usr/share/icons/HorizonPurple/source/left_ptr.svg -o /tmp/horizon-left-ptr.png
+xcursorgen /usr/share/icons/HorizonPurple/source/left_ptr.in /usr/share/icons/HorizonPurple/cursors/left_ptr
+ln -sf left_ptr /usr/share/icons/HorizonPurple/cursors/default
+ln -sf left_ptr /usr/share/icons/HorizonPurple/cursors/arrow
+chown -R horizon:horizon /home/horizon
+chmod +x /home/horizon/Desktop/*.desktop 2>/dev/null || true
 if command -v plymouth-set-default-theme >/dev/null 2>&1; then
   plymouth-set-default-theme horizon
   update-initramfs -u -k all

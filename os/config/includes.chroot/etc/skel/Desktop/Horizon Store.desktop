@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Horizon Store
+Comment=Discover and install official Steam games
+Exec=/usr/local/bin/horizon-store
+Icon=system-software-install
+Terminal=false
+Categories=Game;

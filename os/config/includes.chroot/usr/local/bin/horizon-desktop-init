@@ -1,0 +1,10 @@
+#!/bin/sh
+wallpaper=/usr/share/wallpapers/Horizon/contents/images/1920x1080.svg
+if command -v plasma-apply-wallpaperimage >/dev/null 2>&1; then
+  plasma-apply-wallpaperimage "$wallpaper" >/dev/null 2>&1 || true
+fi
+sleep 3
+if command -v qdbus6 >/dev/null 2>&1; then
+  qdbus6 org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript 'var p=panels()[0]; if(p){p.location="bottom";p.alignment="center";p.floating=true;p.height=52;}' >/dev/null 2>&1 || true
+fi
+exit 0

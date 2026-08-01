@@ -1,5 +1,6 @@
 [Desktop Entry]
-Name=Horizon OS
-Comment=Horizon gaming shell
-Exec=/usr/local/bin/horizon-session
+Name=Horizon Desktop
+Comment=Private, lightweight Horizon desktop
+Exec=/usr/bin/startplasma-x11
 Type=Application
+DesktopNames=KDE

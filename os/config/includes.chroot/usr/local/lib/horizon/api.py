@@ -73,7 +73,7 @@ class Api(SimpleHTTPRequestHandler):
  def do_GET(self):
   if self.path=='/api/system':
    saved=read_json(STATE,{})
-   self.reply(200,{'hostname':os.uname().nodename,'deviceName':saved.get('deviceName','Horizon'),'setup':os.path.exists(STATE),'platform':'Horizon OS Preview 0.9'})
+   self.reply(200,{'hostname':os.uname().nodename,'deviceName':saved.get('deviceName','Horizon'),'setup':os.path.exists(STATE),'platform':'Horizon Desktop Preview 1.0'})
    return
   if self.path=='/api/apps':
    installed=set(read_json(APPS,[]))

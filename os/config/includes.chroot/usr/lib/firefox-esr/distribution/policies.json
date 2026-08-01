@@ -1,0 +1,26 @@
+{
+  "policies": {
+    "DisableFirefoxStudies": true,
+    "DisablePocket": true,
+    "DisableTelemetry": true,
+    "DontCheckDefaultBrowser": true,
+    "EnableTrackingProtection": {
+      "Value": true,
+      "Locked": false,
+      "Cryptomining": true,
+      "Fingerprinting": true
+    },
+    "FirefoxHome": {
+      "SponsoredTopSites": false,
+      "SponsoredPocket": false,
+      "Highlights": false,
+      "Snippets": false
+    },
+    "Preferences": {
+      "browser.urlbar.suggest.quicksuggest.sponsored": {"Value": false, "Status": "locked"},
+      "datareporting.healthreport.uploadEnabled": {"Value": false, "Status": "locked"},
+      "privacy.globalprivacycontrol.enabled": {"Value": true, "Status": "locked"},
+      "privacy.trackingprotection.enabled": {"Value": true, "Status": "default"}
+    }
+  }
+}

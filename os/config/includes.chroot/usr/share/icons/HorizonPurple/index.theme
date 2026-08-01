@@ -1,0 +1,5 @@
+[Icon Theme]
+Name=Horizon Purple
+Comment=Horizon purple pointer with Breeze fallbacks
+Inherits=breeze_cursors
+Directories=cursors

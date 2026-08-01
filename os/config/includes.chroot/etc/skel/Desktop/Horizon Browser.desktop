@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Horizon Browser
+Comment=Private web browsing powered by Firefox ESR
+Exec=firefox-esr
+Icon=firefox-esr
+Terminal=false
+Categories=Network;WebBrowser;

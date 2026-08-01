@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eu
+if ! flatpak info --system com.valvesoftware.Steam >/dev/null 2>&1; then
+  curl -fsS -X POST -H 'Content-Type: application/json' -d '{"app":"steam"}' http://127.0.0.1:4782/api/apps/install >/dev/null
+fi
+exec flatpak run com.valvesoftware.Steam

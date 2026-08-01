@@ -1,0 +1,2 @@
+#!/bin/sh
+exec chromium --user-data-dir="$HOME/.config/horizon-store" --app=http://127.0.0.1:4782/ --start-maximized --no-first-run --disable-session-crashed-bubble

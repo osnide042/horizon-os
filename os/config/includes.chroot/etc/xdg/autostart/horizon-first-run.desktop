@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Horizon Setup
+Exec=/usr/local/bin/horizon-first-run
+OnlyShowIn=KDE;
+X-KDE-autostart-after=panel
+NoDisplay=true
