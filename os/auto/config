@@ -1,0 +1,11 @@
+#!/bin/sh
+set -e
+lb config noauto \
+  --mode debian \
+  --distribution trixie \
+  --architectures amd64 \
+  --binary-images iso-hybrid \
+  --debian-installer live \
+  --debian-installer-gui true \
+  --archive-areas "main contrib non-free-firmware" \
+  --bootappend-live "boot=live components username=horizon hostname=horizon-os locales=en_GB.UTF-8 keyboard-layouts=gb quiet splash"

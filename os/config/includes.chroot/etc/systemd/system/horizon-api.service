@@ -1,0 +1,12 @@
+[Unit]
+Description=Horizon OS local service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /usr/local/lib/horizon/api.py
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target
