@@ -18,7 +18,7 @@ jobs:
       - name: Install ISO tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y live-build debootstrap squashfs-tools xorriso isolinux syslinux-common gettext po4a
+          sudo apt-get install -y live-build debootstrap squashfs-tools xorriso isolinux syslinux-common gettext po4a debian-archive-keyring
           git clone --depth 1 https://salsa.debian.org/live-team/live-build.git /tmp/live-build-current
           sudo make -C /tmp/live-build-current install
           hash -r
