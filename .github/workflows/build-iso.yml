@@ -39,7 +39,9 @@ jobs:
           sudo lb clean --purge || true
           sudo ./auto/config
           sudo lb build
-          sudo mv live-image-amd64.hybrid.iso ../Horizon-OS-amd64.iso
+          set -- ./*.hybrid.iso
+          test -f "$1" || (echo "ISO build finished but no hybrid ISO was found" && exit 1)
+          sudo mv "$1" ../Horizon-OS-amd64.iso
           sudo chown "$USER:$USER" ../Horizon-OS-amd64.iso
           sha256sum ../Horizon-OS-amd64.iso > ../Horizon-OS-amd64.iso.sha256
       - uses: actions/upload-artifact@v4
