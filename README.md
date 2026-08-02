@@ -15,7 +15,9 @@ Horizon Desktop is an installable, bloat-conscious Debian 13 desktop for Virtual
 - Horizon Browser: Firefox ESR with telemetry, studies, Pocket, sponsored content and health-report uploads disabled by policy. Strict tracking features and Global Privacy Control are enabled.
 - Horizon Files: Dolphin.
 - Settings, terminal, text editor, archive manager and screenshot tool.
-- Horizon Store and an on-demand official Steam Flatpak. Games themselves are never bundled into the ISO.
+- A clean Horizon desktop with a floating glass dock, animated wallpaper rotation and smooth KWin effects.
+- Horizon Browse with telemetry, sponsored content and tracking disabled by policy.
+- An on-demand official Steam Flatpak. Games themselves are never bundled into the ISO.
 
 Horizon does not claim that websites, an ISP or a signed-in service cannot observe traffic required to provide their service. The distribution disables its own telemetry defaults, but online privacy still depends on the sites and accounts a person chooses to use.
 

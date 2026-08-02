@@ -1,10 +1,57 @@
 #!/bin/sh
-wallpaper=/usr/share/wallpapers/Horizon/contents/images/1920x1080.svg
-if command -v plasma-apply-wallpaperimage >/dev/null 2>&1; then
-  plasma-apply-wallpaperimage "$wallpaper" >/dev/null 2>&1 || true
-fi
-sleep 3
+# One-time Horizon Plasma shell construction. All settings remain editable.
+MARKER="$HOME/.config/horizon-desktop-v2"
+[ -e "$MARKER" ] && exit 0
+mkdir -p "$HOME/.config" "$HOME/.local/share"
+
+kwriteconfig6 --file kdeglobals --group General --key ColorScheme HorizonDark
+kwriteconfig6 --file kdeglobals --group KDE --key SingleClick false
+kwriteconfig6 --file kdeglobals --group KDE --key AnimationDurationFactor 0.75
+kwriteconfig6 --file kdeglobals --group Icons --key Theme breeze-dark
+kwriteconfig6 --file kwinrc --group Plugins --key blurEnabled true
+kwriteconfig6 --file kwinrc --group Plugins --key glideEnabled true
+kwriteconfig6 --file kwinrc --group Plugins --key translucencyEnabled true
+kwriteconfig6 --file kwinrc --group Plugins --key overviewEnabled true
+kwriteconfig6 --file kwinrc --group Effect-Blur --key BlurStrength 10
+kwriteconfig6 --file kwinrc --group Effect-Blur --key NoiseStrength 2
+kwriteconfig6 --file kwinrc --group Effect-Glide --key GlideInDuration 170
+kwriteconfig6 --file kwinrc --group Effect-Glide --key GlideOutDuration 140
+kwriteconfig6 --file kwinrc --group Windows --key BorderlessMaximizedWindows true
+kwriteconfig6 --file kwalletrc --group Wallet --key Enabled false
+kwriteconfig6 --file plasmarc --group Theme --key name breeze-dark
+kwriteconfig6 --file dolphinrc --group General --key ShowFullPath false
+kwriteconfig6 --file dolphinrc --group General --key ShowStatusBar true
+kwriteconfig6 --file dolphinrc --group DetailsMode --key PreviewSize 48
+
+sleep 4
 if command -v qdbus6 >/dev/null 2>&1; then
-  qdbus6 org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript 'var p=panels()[0]; if(p){p.location="bottom";p.alignment="center";p.floating=true;p.height=52;}' >/dev/null 2>&1 || true
+  qdbus6 org.kde.KWin /KWin reconfigure >/dev/null 2>&1 || true
+  qdbus6 org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript "$(cat <<'JS'
+var ds = desktops();
+for (var i=0; i<ds.length; i++) {
+  var d=ds[i];
+  d.wallpaperPlugin='org.kde.slideshow';
+  d.currentConfigGroup=['Wallpaper','org.kde.slideshow','General'];
+  d.writeConfig('SlidePaths','file:///usr/share/wallpapers/HorizonMotion');
+  d.writeConfig('SlideInterval',12);
+}
+var ps=panels();
+for (var x=0; x<ps.length; x++) ps[x].remove();
+var p=new Panel;
+p.location='bottom'; p.alignment='center'; p.floating=true; p.height=58; p.lengthMode='fit'; p.opacityMode='translucent';
+var menu=p.addWidget('org.kde.plasma.kickoff');
+menu.currentConfigGroup=['General']; menu.writeConfig('icon','horizon');
+var tasks=p.addWidget('org.kde.plasma.icontasks');
+tasks.currentConfigGroup=['General'];
+tasks.writeConfig('launchers','applications:horizon-browser.desktop,applications:org.kde.dolphin.desktop,applications:org.kde.konsole.desktop,applications:horizon-steam.desktop,applications:systemsettings.desktop');
+tasks.writeConfig('showOnlyCurrentDesktop',false);
+p.addWidget('org.kde.plasma.marginsseparator');
+p.addWidget('org.kde.plasma.systemtray');
+p.addWidget('org.kde.plasma.digitalclock');
+p.addWidget('org.kde.plasma.showdesktop');
+JS
+)" >/dev/null 2>&1 || true
 fi
+
+touch "$MARKER"
 exit 0

@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Name=Horizon Browser
+Name=Horizon Browse
 GenericName=Web Browser
 Comment=Private web browsing powered by Firefox ESR
-Exec=firefox-esr %u
+Exec=firefox-esr --name HorizonBrowse %u
 Icon=firefox-esr
 Terminal=false
 Categories=Network;WebBrowser;

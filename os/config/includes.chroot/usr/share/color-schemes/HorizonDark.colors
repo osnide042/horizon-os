@@ -24,12 +24,42 @@ DecorationHover=135,76,255
 BackgroundNormal=104,78,255
 ForegroundNormal=255,255,255
 
+[Colors:Header]
+BackgroundNormal=17,25,49
+ForegroundNormal=247,249,255
+DecorationFocus=72,151,255
+DecorationHover=144,78,255
+
+[Colors:Complementary]
+BackgroundNormal=8,12,27
+ForegroundNormal=247,249,255
+DecorationFocus=72,151,255
+DecorationHover=144,78,255
+
+[Colors:Window][Inactive]
+BackgroundNormal=12,17,34
+ForegroundNormal=158,172,203
+
+[Colors:View][Inactive]
+BackgroundNormal=15,21,42
+ForegroundNormal=158,172,203
+
 [Colors:Tooltip]
 BackgroundNormal=20,25,48
 ForegroundNormal=247,249,255
 
 [WM]
-activeBackground=34,64,138
+activeBackground=20,28,54
 activeForeground=255,255,255
-inactiveBackground=18,24,45
+inactiveBackground=12,17,34
 inactiveForeground=158,172,203
+activeBlend=73,143,255
+inactiveBlend=82,63,145
+
+[KDE]
+contrast=4
+
+[General]
+ColorScheme=HorizonDark
+Name=Horizon Dark Glass
+shadeSortColumn=true

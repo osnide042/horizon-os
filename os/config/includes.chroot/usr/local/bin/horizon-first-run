@@ -7,7 +7,7 @@ while [ "$counter" -lt 40 ]; do
   counter=$((counter + 1))
   sleep 0.25
 done
-chromium --user-data-dir="$HOME/.config/horizon-setup" --app=http://127.0.0.1:4782/ --start-maximized --no-first-run --disable-session-crashed-bubble &
+chromium --password-store=basic --user-data-dir="$HOME/.config/horizon-setup" --app=http://127.0.0.1:4782/ --start-maximized --no-first-run --disable-session-crashed-bubble &
 browser_pid=$!
 while kill -0 "$browser_pid" 2>/dev/null; do
   if [ -e /var/lib/horizon/state/device.json ]; then

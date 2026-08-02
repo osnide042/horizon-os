@@ -1,6 +1,13 @@
 #!/bin/sh
-set -eu
-if ! flatpak info --system com.valvesoftware.Steam >/dev/null 2>&1; then
-  curl -fsS -X POST -H 'Content-Type: application/json' -d '{"app":"steam"}' http://127.0.0.1:4782/api/apps/install >/dev/null
+set -u
+APP=com.valvesoftware.Steam
+if flatpak info --user "$APP" >/dev/null 2>&1; then exec flatpak run --user "$APP"; fi
+if flatpak info --system "$APP" >/dev/null 2>&1; then exec flatpak run --system "$APP"; fi
+kdialog --title "Horizon Steam Setup" --yesno "Steam is not installed yet. Horizon will download the official Steam client from Flathub.\n\nThis needs internet and about 2 GB of free space." || exit 0
+flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo || {
+  kdialog --error "Horizon could not connect to Flathub. Check your internet connection and try again."; exit 1;
+}
+if ! flatpak install --user --noninteractive -y flathub "$APP"; then
+  kdialog --error "Steam could not be installed. Check that you have at least 2 GB free, then try again."; exit 1
 fi
-exec flatpak run com.valvesoftware.Steam
+exec flatpak run --user "$APP"
