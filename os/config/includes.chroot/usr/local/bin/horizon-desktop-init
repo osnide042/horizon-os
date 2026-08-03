@@ -1,8 +1,9 @@
 #!/bin/sh
 # One-time Horizon Plasma shell construction. All settings remain editable.
-MARKER="$HOME/.config/horizon-desktop-v2"
+MARKER="$HOME/.config/horizon-desktop-v3"
 [ -e "$MARKER" ] && exit 0
 mkdir -p "$HOME/.config" "$HOME/.local/share"
+rm -f "$HOME/Desktop/Horizon Browser.desktop" "$HOME/Desktop/Horizon Store.desktop" "$HOME/Desktop/Steam.desktop"
 
 kwriteconfig6 --file kdeglobals --group General --key ColorScheme HorizonDark
 kwriteconfig6 --file kdeglobals --group KDE --key SingleClick false
@@ -30,15 +31,12 @@ if command -v qdbus6 >/dev/null 2>&1; then
 var ds = desktops();
 for (var i=0; i<ds.length; i++) {
   var d=ds[i];
-  d.wallpaperPlugin='org.kde.slideshow';
-  d.currentConfigGroup=['Wallpaper','org.kde.slideshow','General'];
-  d.writeConfig('SlidePaths','file:///usr/share/wallpapers/HorizonMotion');
-  d.writeConfig('SlideInterval',12);
+  d.wallpaperPlugin='org.horizon.motion';
 }
 var ps=panels();
 for (var x=0; x<ps.length; x++) ps[x].remove();
 var p=new Panel;
-p.location='bottom'; p.alignment='center'; p.floating=true; p.height=58; p.lengthMode='fit'; p.opacityMode='translucent';
+p.location='bottom'; p.alignment='center'; p.floating=true; p.height=58; p.lengthMode='fit'; p.opacityMode='translucent'; p.hiding='none';
 var menu=p.addWidget('org.kde.plasma.kickoff');
 menu.currentConfigGroup=['General']; menu.writeConfig('icon','horizon');
 var tasks=p.addWidget('org.kde.plasma.icontasks');

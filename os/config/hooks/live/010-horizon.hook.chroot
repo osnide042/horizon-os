@@ -15,6 +15,7 @@ rsvg-convert -w 32 -h 32 /usr/share/icons/HorizonPurple/source/left_ptr.svg -o /
 xcursorgen /usr/share/icons/HorizonPurple/source/left_ptr.in /usr/share/icons/HorizonPurple/cursors/left_ptr
 ln -sf left_ptr /usr/share/icons/HorizonPurple/cursors/default
 ln -sf left_ptr /usr/share/icons/HorizonPurple/cursors/arrow
+rsvg-convert -w 160 -h 160 /usr/share/plymouth/themes/horizon/horizon-mark.svg -o /usr/share/plymouth/themes/horizon/horizon-mark.png
 chown -R horizon:horizon /home/horizon
 chmod +x /home/horizon/Desktop/*.desktop 2>/dev/null || true
 rm -f /home/horizon/Desktop/'Horizon Store.desktop'

@@ -1,0 +1,12 @@
+{
+  "KPlugin": {
+    "Id": "org.horizon.motion",
+    "Name": "Horizon Motion",
+    "Description": "Native animated Horizon glass wallpaper",
+    "Version": "1.0",
+    "License": "GPL-3.0",
+    "Authors": [{"Name": "Horizon Studios"}]
+  },
+  "KPackageStructure": "Plasma/Wallpaper",
+  "X-Plasma-API-Minimum-Version": "6.0"
+}

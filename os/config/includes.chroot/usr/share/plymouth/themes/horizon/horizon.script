@@ -1,34 +1,45 @@
-Window.SetBackgroundTopColor(0.02, 0.05, 0.16);
-Window.SetBackgroundBottomColor(0.18, 0.05, 0.34);
+Window.SetBackgroundTopColor(0.015, 0.025, 0.09);
+Window.SetBackgroundBottomColor(0.16, 0.025, 0.30);
 
-title_image = Image.Text("HORIZON", 1.0, 1.0, 1.0);
-title_sprite = Sprite(title_image);
-title_sprite.SetX(Window.GetWidth() / 2 - title_image.GetWidth() / 2);
-title_sprite.SetY(Window.GetHeight() / 2 - 44);
+logo = Image("horizon-mark.png");
+glow = logo.Scale(190, 190);
+glow_sprite = Sprite(glow);
+glow_sprite.SetX(Window.GetWidth() / 2 - 95);
+glow_sprite.SetY(Window.GetHeight() / 2 - 142);
+glow_sprite.SetOpacity(0.18);
+
+logo_sprite = Sprite(logo);
+logo_sprite.SetZ(10);
+
+title = Image.Text("H O R I Z O N", 0.96, 0.97, 1.0);
+title_sprite = Sprite(title);
+title_sprite.SetX(Window.GetWidth() / 2 - title.GetWidth() / 2);
+title_sprite.SetY(Window.GetHeight() / 2 + 62);
 title_sprite.SetZ(10);
 
-status_image = Image.Text("Starting your Horizon", 0.54, 0.72, 1.0);
-status_sprite = Sprite(status_image);
-status_sprite.SetX(Window.GetWidth() / 2 - status_image.GetWidth() / 2);
-status_sprite.SetY(Window.GetHeight() / 2 + 32);
+status = Image.Text("STARTING YOUR DESKTOP", 0.42, 0.72, 1.0);
+status_sprite = Sprite(status);
+status_sprite.SetX(Window.GetWidth() / 2 - status.GetWidth() / 2);
+status_sprite.SetY(Window.GetHeight() / 2 + 108);
 status_sprite.SetZ(10);
 
-dot_image = Image.Text("●", 0.42, 0.30, 1.0);
-dot1 = Sprite(dot_image);
-dot2 = Sprite(dot_image);
-dot3 = Sprite(dot_image);
-dot1.SetX(Window.GetWidth() / 2 - 32);
-dot2.SetX(Window.GetWidth() / 2 - 4);
-dot3.SetX(Window.GetWidth() / 2 + 24);
-dot1.SetY(Window.GetHeight() / 2 + 72);
-dot2.SetY(Window.GetHeight() / 2 + 72);
-dot3.SetY(Window.GetHeight() / 2 + 72);
+ring = Image.Text("·   ·   ·", 0.50, 0.35, 1.0);
+ring_sprite = Sprite(ring);
+ring_sprite.SetY(Window.GetHeight() / 2 + 142);
+ring_sprite.SetZ(10);
 
 fun horizon_refresh() {
   t = Plymouth.GetTime();
-  dot1.SetOpacity((Math.Sin(t * 4.0) + 1.0) / 2.0);
-  dot2.SetOpacity((Math.Sin(t * 4.0 - 2.0) + 1.0) / 2.0);
-  dot3.SetOpacity((Math.Sin(t * 4.0 - 4.0) + 1.0) / 2.0);
+  spin = Math.Sin(t * 2.8);
+  if (spin < 0) spin = 0 - spin;
+  width = 25 + spin * 135;
+  frame = logo.Scale(width, 160);
+  logo_sprite.SetImage(frame);
+  logo_sprite.SetX(Window.GetWidth() / 2 - width / 2);
+  logo_sprite.SetY(Window.GetHeight() / 2 - 128);
+  glow_sprite.SetOpacity(0.12 + (Math.Sin(t * 2.0) + 1.0) * 0.08);
+  ring_sprite.SetX(Window.GetWidth() / 2 - ring.GetWidth() / 2 + Math.Sin(t * 3.2) * 8);
+  ring_sprite.SetOpacity(0.45 + (Math.Sin(t * 4.0) + 1.0) * 0.25);
 }
 
 Plymouth.SetRefreshFunction(horizon_refresh);
