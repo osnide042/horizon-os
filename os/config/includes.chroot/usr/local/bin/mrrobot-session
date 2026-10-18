@@ -1,8 +1,0 @@
-#!/bin/sh
-xset s off
-xset -dpms
-xset s noblank
-while true; do
-  chromium --kiosk --no-first-run --disable-session-crashed-bubble --disable-infobars --disable-features=TranslateUI http://127.0.0.1:4782/
-  sleep 1
-done

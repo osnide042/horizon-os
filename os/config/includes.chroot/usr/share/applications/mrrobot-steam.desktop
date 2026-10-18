@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Steam
-Comment=Install or open the official Steam client
-Exec=/usr/local/bin/mrrobot-steam
-Icon=steam
-Terminal=false
-Categories=Game;

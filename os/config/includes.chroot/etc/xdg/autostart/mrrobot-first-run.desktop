@@ -1,7 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=MR.ROBOT Setup
-Exec=/usr/local/bin/mrrobot-first-run
-OnlyShowIn=KDE;
-X-KDE-autostart-after=panel
-NoDisplay=true

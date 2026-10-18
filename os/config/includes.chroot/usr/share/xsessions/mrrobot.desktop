@@ -1,6 +1,0 @@
-[Desktop Entry]
-Name=MR.ROBOT Desktop
-Comment=Private, lightweight MR.ROBOT desktop
-Exec=/usr/bin/startplasma-x11
-Type=Application
-DesktopNames=KDE
