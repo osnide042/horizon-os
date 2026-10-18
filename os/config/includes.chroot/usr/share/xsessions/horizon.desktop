@@ -1,6 +1,0 @@
-[Desktop Entry]
-Name=Horizon Desktop
-Comment=Private, lightweight Horizon desktop
-Exec=/usr/bin/startplasma-x11
-Type=Application
-DesktopNames=KDE
