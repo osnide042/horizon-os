@@ -1,0 +1,28 @@
+#!/bin/sh
+set -e
+chmod +x /usr/local/bin/mrrobot-session /usr/local/bin/mrrobot-first-run /usr/local/bin/mrrobot-steam /usr/local/bin/mrrobot-desktop-init /usr/local/lib/mrrobot/api.py /usr/local/lib/mrrobot/app_guard.py
+id mrrobot >/dev/null 2>&1 || useradd -m -s /bin/bash mrrobot
+usermod -aG audio,video,input,sudo mrrobot
+systemctl enable mrrobot-api.service
+systemctl enable mrrobot-app-guard.service
+systemctl disable lightdm.service 2>/dev/null || true
+systemctl enable sddm.service
+mkdir -p /var/lib/mrrobot/games /var/lib/mrrobot/state
+chown -R mrrobot:mrrobot /var/lib/mrrobot 2>/dev/null || true
+flatpak remote-add --system --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo || true
+mkdir -p /usr/share/icons/MR.ROBOTPurple/cursors
+rsvg-convert -w 32 -h 32 /usr/share/icons/MR.ROBOTPurple/source/left_ptr.svg -o /tmp/mrrobot-left-ptr.png
+xcursorgen /usr/share/icons/MR.ROBOTPurple/source/left_ptr.in /usr/share/icons/MR.ROBOTPurple/cursors/left_ptr
+ln -sf left_ptr /usr/share/icons/MR.ROBOTPurple/cursors/default
+ln -sf left_ptr /usr/share/icons/MR.ROBOTPurple/cursors/arrow
+rsvg-convert -w 160 -h 160 /usr/share/plymouth/themes/mrrobot/mrrobot-mark.svg -o /usr/share/plymouth/themes/mrrobot/mrrobot-mark.png
+chown -R mrrobot:mrrobot /home/mrrobot
+chmod +x /home/mrrobot/Desktop/*.desktop 2>/dev/null || true
+rm -f /home/mrrobot/Desktop/'MR.ROBOT Store.desktop'
+if command -v plymouth-set-default-theme >/dev/null 2>&1; then
+  plymouth-set-default-theme mrrobot
+  update-initramfs -u -k all
+fi
+if command -v update-grub >/dev/null 2>&1; then
+  update-grub || true
+fi

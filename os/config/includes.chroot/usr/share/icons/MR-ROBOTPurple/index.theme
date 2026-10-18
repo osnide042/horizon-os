@@ -1,0 +1,5 @@
+[Icon Theme]
+Name=MR.ROBOT Purple
+Comment=MR.ROBOT purple pointer with Breeze fallbacks
+Inherits=breeze_cursors
+Directories=cursors

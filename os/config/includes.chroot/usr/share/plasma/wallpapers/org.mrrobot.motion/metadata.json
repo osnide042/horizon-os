@@ -1,0 +1,12 @@
+{
+  "KPlugin": {
+    "Id": "org.mrrobot.motion",
+    "Name": "MR.ROBOT Motion",
+    "Description": "Native animated MR.ROBOT glass wallpaper",
+    "Version": "1.0",
+    "License": "GPL-3.0",
+    "Authors": [{"Name": "MR.ROBOT Studios"}]
+  },
+  "KPackageStructure": "Plasma/Wallpaper",
+  "X-Plasma-API-Minimum-Version": "6.0"
+}

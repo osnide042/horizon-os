@@ -1,0 +1,12 @@
+[Unit]
+Description=MR.ROBOT OS local service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /usr/local/lib/mrrobot/api.py
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target
